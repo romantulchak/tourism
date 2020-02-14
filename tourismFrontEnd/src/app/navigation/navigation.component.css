@@ -1,0 +1,15 @@
+.navbar__nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #fda;
+  padding: 1.2em;
+  flex-wrap: wrap;
+}
+.navbar__ul{
+  display: flex;
+  list-style-type: none;
+}
+.navbar__ul li{
+  margin-left: 1em;
+}

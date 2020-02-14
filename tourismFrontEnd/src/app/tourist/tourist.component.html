@@ -1,0 +1,12 @@
+<p>tourist works!</p>
+
+
+<div *ngFor="let tourist of tourists">
+  <h1>{{tourist.id}}</h1>
+  <h2>{{tourist.firstName}}</h2>
+  <h3>{{tourist.country}}</h3>
+  <a  routerLink="/editTourist/{{tourist.id}}">Edit</a>
+  <br>
+  <button (click)="deleteTourist(tourist.id)" >Delete</button>
+  <hr>
+</div>

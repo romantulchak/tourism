@@ -1,0 +1,25 @@
+<p>edit-tourist works!</p>
+<div>
+  <h2>{{tourist?.firstName}}</h2>
+  <h3>{{tourist?.lastName}}</h3>
+
+
+  <div *ngIf="tourist?.flights.length == 0; else notNull">
+    <h2>Flights not found</h2>
+  </div>
+
+  <ng-template #notNull>
+     <div *ngFor="let f of tourist?.flights">
+        <h2>{{f.id}}</h2>
+     </div>
+  </ng-template>
+
+  <button (click)="addFlight()">Додати польот</button>
+
+
+  <ng-form #myForm= "ngForm" *ngIf="addFLight">
+    <input type="text" >
+  </ng-form>
+
+
+</div>

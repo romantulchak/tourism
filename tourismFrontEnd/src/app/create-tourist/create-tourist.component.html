@@ -1,0 +1,63 @@
+<form (submit)="f.form.valid && createTourist()" #f="ngForm" method="post" action="" name="form" novalidate class="createTourist__form">
+
+  <div class="">
+    <label for="firstName">Imię</label>
+    <input type="text" id="firstName" name="firstName" placeholder="Imię turysty"
+           [(ngModel)]="model.firstName"
+            #firstName = "ngModel"
+           [ngClass]="{'error': f.submitted && firstName.invalid}"
+            required
+           minlength="3"
+    >
+    <div *ngIf="f.submitted && firstName.invalid">
+      <div class="error__text" *ngIf="firstName.errors?.required">Imie nie jest poprawne</div>
+    </div>
+
+  </div>
+
+  <div class="">
+    <label for="secondName">Nazwisko</label>
+    <input type="text" id="secondName" name="secondName" placeholder="Nazwisko turysty"
+           [(ngModel)]="model.lastName"
+           #lastName = "ngModel"
+           [ngClass]="{'error': f.submitted && lastName.invalid}"
+           required
+           minlength="3"
+    >
+
+    <div *ngIf="f.submitted && lastName.invalid">
+      <div class="error__text" *ngIf="lastName.errors?.required">Nazwisko nie jest poprawne</div>
+      <div class="error__text" *ngIf="lastName.errors?.minlength">Nie może być mniej niż 3 znaki</div>
+    </div>
+
+
+  </div>
+  <div class="">
+    <label for="sex">Płeć</label>
+    <select name="sex" id="sex"  [(ngModel)]="model.sex">
+
+      <option value="Mężczyzna">Mężczyzna</option>
+      <option value="Kobieta">Kobieta</option>
+
+    </select>
+  </div>
+  <div class="">
+    <label for="countries">Kraj</label>
+
+    <select  [(ngModel)]="model.country"  name="countries" id="countries">
+      <option *ngFor="let country of countries" selected value="{{country.name}}">{{country.name}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="notes">Notatki</label>
+    <input type="text" id="notes" name="notes" placeholder="Notatki może być pustym" [(ngModel)]="model.notes"
+    >
+  </div>
+  <div>
+    <input type="submit" value="Send">
+  </div>
+
+
+</form>
+
