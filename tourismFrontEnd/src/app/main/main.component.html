@@ -1,1 +1,97 @@
-<p>main works!</p>
+<div class="loading" *ngIf="loading"><mat-spinner></mat-spinner></div>
+<section class="background__main">
+  <form method="get" ngNativeValidate (ngSubmit)="getFlightsByParams(timeOfDeparture.value,arrivalTime.value, numberOfSeats.value, location?.nativeElement.value || null, direction?.nativeElement.value || null)">
+    <div class="search__form">
+        <input type="checkbox" [checked]="isLocationAndDirection" (change)="this.isLocationAndDirection = !this.isLocationAndDirection"><span class="text__decoratin">Add location and direction</span>
+
+        <div *ngIf="isLocationAndDirection">
+          <div class="grid__input">
+          <div class="row"><label for="location">Location</label>
+            <input class="form__input form__input__shadows" type="text" id="location" name="location" placeholder="Location"
+                   #location
+                   [required]="isLocationAndDirection"
+                   minlength="3"
+                   maxlength="14"
+            >
+          </div>
+          <div class="row">
+            <label for="direction">Direction</label>
+            <input class="form__input form__input__shadows" type="text" id="direction" name="direction" placeholder="Direction"
+                   #direction
+                   [required]="isLocationAndDirection"
+                   minlength="3"
+                   maxlength="14"
+            >
+          </div>
+        </div>
+       </div>
+      <div class="grid__input">
+          <div class="row">
+            <label for="timeOfDeparture">From</label>
+            <input class="form__input form__input__shadows"  tabindex="-1"  #timeOfDeparture [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" name="timeOfDeparture" id="timeOfDeparture" autocomplete="off" placeholder="From" required>
+            <owl-date-time  hideOtherMonths="true" #dt4></owl-date-time>
+          </div>
+          <div class="row">
+            <label for="arrivalTime">To</label>
+            <input class="form__input form__input__shadows"  tabindex="-1" [owlDateTimeTrigger]="dt5" #arrivalTime  name="arrivalTime" [owlDateTime]="dt5" id="arrivalTime" autocomplete="off" placeholder="To" [required]="!isLocationAndDirection">
+            <owl-date-time  hideOtherMonths="true" #dt5></owl-date-time>
+          </div>
+      </div>
+
+
+      <div class="row">
+        <label for="numberOfSeats">Number of seats</label>
+        <input class="form__input form__input__shadows" type="number" min="1" #numberOfSeats id="numberOfSeats" name="numberOfSeats" placeholder="Number of seats" value="1"
+               required>
+      </div>
+      <div class="block__button_search">
+        <button class="button_search"  [disabled]="buttonLoading" type="submit" >
+          <fa-icon [class.icon_notShow]="buttonLoading" [icon]="faSearch"></fa-icon>
+          <fa-icon [class.spiner__color]="buttonLoading" *ngIf="buttonLoading" [icon]="faSpinner" [spin]="buttonLoading"></fa-icon> Search
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section>
+  <ng-template #flightNotFound>
+    <h2 class="flights_not_found">Flights not found</h2>
+  </ng-template>
+  <div *ngIf="flights?.length != 0;else flightNotFound" class="search__result container">
+
+    <div class="grid__add_flight">
+      <div class="add_flight_card" *ngFor="let flight of pageOfItems">
+        <div class="card__position">
+          <h2 class="flight__card__title"><a routerLink="/editFlight/{{flight.id}}">{{flight.location}} <fa-icon [icon]="faRightArrow"></fa-icon> {{flight.direction}}</a></h2>
+          <hr class="flight__hr">
+          <div class="flight__values">
+            <fa-icon [icon]="faDeparture"></fa-icon><h3>Departure time: {{flight.arrivalTime}}</h3>
+          </div>
+          <div class="flight__values">
+            <fa-icon [icon]="faArrival"></fa-icon><h3>Arrival time: {{flight.timeOfDeparture}}</h3>
+          </div>
+          <div class="flight__values" *ngIf="flight.numberOfSeats != 0;else seatsIsFull">
+            <fa-icon id="icon__chair" [icon]="faChair"></fa-icon>
+            <h3>Places: {{flight.numberOfSeats}}</h3>
+          </div>
+          <div class="flight__values">
+            <fa-icon [icon]="faMoney"></fa-icon>
+            <h3>Price: {{flight.ticketPrice}} <fa-icon [icon]="faDollar"></fa-icon> </h3>
+          </div>
+          <div class="flight__values">
+            <fa-icon [icon]="faPeople"></fa-icon>
+            <h3>Passenger: {{flight.tourists.length}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #seatsIsFull>
+    <div class="flight__values">
+      <fa-icon [icon]="faPeople"></fa-icon>
+      <h3 class="error__text">All places are occupied</h3>
+    </div>
+  </ng-template>
+  <app-pagination [pageSize]="50" [items]="flights" (changePage)="onChangePage($event)"></app-pagination>
+</section>

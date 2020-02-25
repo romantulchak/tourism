@@ -1,12 +1,37 @@
-<p>tourist works!</p>
+<div class="loading" *ngIf="loading;"><mat-spinner></mat-spinner></div>
+<section class="container">
+  <div *ngIf="tourists.length == 0 && !loading; else showTourists">
+    <h2 class="tourist__not__found">Tourist not found</h2>
+  </div>
+  <ng-template #showTourists>
+    <div class="card__search">
+      <input  type="text" placeholder="Serach by Surname" class="input__search" [(ngModel)]="searchBySurname">
+    </div>
+    <div class="grid">
+      <div class="tourist__card" *ngFor="let tourist of pageOfItems | touristFilter: searchBySurname">
 
 
-<div *ngFor="let tourist of tourists">
-  <h1>{{tourist.id}}</h1>
-  <h2>{{tourist.firstName}}</h2>
-  <h3>{{tourist.country}}</h3>
-  <a  routerLink="/editTourist/{{tourist.id}}">Edit</a>
-  <br>
-  <button (click)="deleteTourist(tourist.id)" >Delete</button>
-  <hr>
-</div>
+
+        <div class="card">
+          <img class="card__img" *ngIf="tourist.sex.includes('Male')" src="../../assets/image/man.png" alt="">
+          <img class="card__img" *ngIf="tourist.sex.includes('Female')" src="../../assets/image/woman.png" alt="">
+          <h2 class="card__title"><a routerLink="/editTourist/{{tourist.id}}">{{tourist.firstName | titlecase}} {{tourist.lastName | titlecase}}</a></h2>
+          <h3 class="card__country">{{tourist.country}}</h3>
+          <h4>{{tourist.sex}}</h4>
+          <div class="card__buttons">
+            <a class="card__edit"  routerLink="/editTourist/{{tourist.id}}">
+              <fa-icon [icon]="faEdit"></fa-icon>
+              Edit
+            </a>
+            <button class="button_delete"  [disabled]="buttonLoading" (click)="deleteTourist(tourist.id, tourist)" >
+              <fa-icon [class.icon_notShow]="buttonLoading && currentTourist === tourist" [icon]="faTrash"></fa-icon>
+              <fa-icon [class.spiner__color]="buttonLoading && currentTourist === tourist" *ngIf="buttonLoading && currentTourist === tourist" [icon]="faSpinner" [spin]="buttonLoading && currentTourist === tourist"></fa-icon> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-pagination  [pageSize]="15" [items]="tourists" (changePage)="ngOnChangePage($event)"></app-pagination>
+  </ng-template>
+
+</section>

@@ -1,1 +1,49 @@
-<h1>All flights</h1>
+<div class="loading" *ngIf="loading"><mat-spinner></mat-spinner></div>
+<section class="container">
+<div>
+    <div class="grid__add_flight">
+      <div class="add_flight_card" *ngFor="let flight of pageOfItems">
+        <div class="card__position">
+          <h2 class="flight__card__title">{{flight.location}} <fa-icon [icon]="faRightArrow"></fa-icon> {{flight.direction}}</h2>
+          <hr class="flight__hr">
+          <div class="flight__values">
+            <fa-icon [icon]="faDeparture"></fa-icon><h3>Departure time: {{flight.arrivalTime}}</h3>
+          </div>
+          <div class="flight__values">
+            <fa-icon [icon]="faArrival"></fa-icon><h3>Arrival time: {{flight.timeOfDeparture}}</h3>
+          </div>
+          <div class="flight__values" *ngIf="flight.numberOfSeats != 0;else seatsIsFull">
+            <fa-icon id="icon__chair" [icon]="faChair"></fa-icon>
+            <h3>Places: {{flight.numberOfSeats}}</h3>
+          </div>
+          <div class="flight__values">
+            <fa-icon [icon]="faMoney"></fa-icon>
+            <h3>Price: {{flight.ticketPrice}} <fa-icon [icon]="faDollar"></fa-icon> </h3>
+          </div>
+          <div class="flight__values">
+            <fa-icon [icon]="faPeople"></fa-icon>
+            <h3>Passenger: {{flight.tourists.length}}</h3>
+          </div>
+          <div class="card__buttons">
+            <a class="card__edit"  routerLink="/editFlight/{{flight.id}}">
+              <fa-icon [icon]="faEdit"></fa-icon>
+              Edit
+            </a>
+            <button class="button_delete"  [disabled]="buttonLoading" (click)="delete(flight.id, flight)" >
+              <fa-icon [class.icon_notShow]="buttonLoading && currentFlight === flight" [icon]="faTrash"></fa-icon>
+              <fa-icon [class.spiner__color]="buttonLoading && currentFlight === flight" *ngIf="buttonLoading && currentFlight === flight" [icon]="faSpinner" [spin]="buttonLoading && currentFlight === flight"></fa-icon> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<ng-template #seatsIsFull>
+  <div class="flight__values">
+    <fa-icon [icon]="faPeople"></fa-icon>
+    <h3 class="error__text">All places are occupied</h3>
+  </div>
+</ng-template>
+  <app-pagination [pageSize]="50" [items]="flights" (changePage)="onChangePage($event)"></app-pagination>
+</section>
+

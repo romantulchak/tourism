@@ -1,0 +1,105 @@
+<div class="loading" *ngIf="loading;"><mat-spinner></mat-spinner></div>
+<section class="container">
+  <div>
+    <h1 class="flight__edit__title">{{flight?.location | titlecase}}<fa-icon id="arrow" [icon]="faRightArrow"></fa-icon>{{flight?.direction | titlecase}}</h1>
+  </div>
+  <div class="flight__edit__grid">
+    <div class="flight__properties">
+      <div class="flight__values">
+        <fa-icon [icon]="faDeparture"></fa-icon><h3>Departure time: {{flight.arrivalTime}}</h3>
+      </div>
+      <div class="flight__values">
+        <fa-icon [icon]="faArrival"></fa-icon><h3>Arrival time: {{flight.timeOfDeparture}}</h3>
+      </div>
+      <div class="flight__values" *ngIf="flight.numberOfSeats != 0;else seatsIsFull">
+        <fa-icon id="icon__chair" [icon]="faChair"></fa-icon>
+        <h3>Places: {{flight.numberOfSeats}}</h3>
+      </div>
+      <div class="flight__values">
+        <fa-icon [icon]="faMoney"></fa-icon>
+        <h3>Price: {{flight.ticketPrice}} <fa-icon [icon]="faDollar"></fa-icon> </h3>
+      </div>
+      <div class="flight__values">
+        <fa-icon [icon]="faPeople"></fa-icon>
+        <h3>Passenger: {{flight.tourists.length}}</h3>
+      </div>
+    </div>
+
+    <div>
+      <div class="tourist__grid">
+        <div class="tourist__center" *ngFor="let tourist of pageOfItems">
+          <div class="pf">
+            <img class="flight__tourist__avatar" *ngIf="tourist.sex.includes('Male')" src="../../assets/image/man.png" alt="">
+            <img class="flight__tourist__avatar" *ngIf="tourist.sex.includes('Female')" src="../../assets/image/woman.png" alt="">
+            <h2 class="tourist__details"><a routerLink="/editTourist/{{tourist.id}}">{{tourist.firstName | titlecase}} {{tourist.lastName | titlecase}}</a></h2>
+            <button class="button_delete"  (click)="delete(tourist.id, tourist)">
+              <fa-icon [class.icon_notShow]="buttonLoading && currentTourist === tourist" [icon]="faTrash"></fa-icon>
+              <fa-icon [class.spiner__color]="buttonLoading && currentTourist === tourist" *ngIf="buttonLoading && currentTourist === tourist" [icon]="faSpinner" [spin]="buttonLoading && currentTourist === tourist"></fa-icon> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+      <app-pagination [pageSize]="10" [items]="flight?.tourists" (changePage)="onChangePage($event)"></app-pagination>
+      <button class="button_add" *ngIf="touristsToAdd?.length != 0 && touristsToAdd != null; else flightNUll" (click)="getTourist()"><span *ngIf="!addTourist">+</span><span *ngIf="addTourist">-</span></button>
+
+
+
+
+
+    </div>
+
+  </div>
+
+  <ng-template #seatsIsFull>
+    <div class="flight__values">
+      <fa-icon [icon]="faPeople"></fa-icon>
+      <h3 class="error__text">All places are occupied</h3>
+    </div>
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="isAdd">
+  <div *ngIf="touristsToAdd.length != 0; else showMessage">
+    <div class="tourist__grid">
+      <div class="tourist__center" *ngFor="let tourist of pageOfItemsToAdd">
+        <div class="pf">
+          <img class="flight__tourist__avatar" *ngIf="tourist.sex.includes('Male')" src="../../assets/image/man.png" alt="">
+          <img class="flight__tourist__avatar" *ngIf="tourist.sex.includes('Female')" src="../../assets/image/woman.png" alt="">
+          <h2 class="tourist__details"><a routerLink="/editTourist/{{tourist.id}}">{{tourist.firstName | titlecase}} {{tourist.lastName | titlecase}}</a></h2>
+
+
+
+
+          <button class="button__add__tourist" [disabled]="flight.numberOfSeats === 0 || buttonLoading && currentTourist === tourist" (click)="addTouristToFlight(flight, tourist)">
+            <fa-icon [class.icon_notShow]="buttonLoading && currentTourist === tourist" [icon]="faShop"></fa-icon>
+            <fa-icon [class.spiner__color]="buttonLoading && currentTourist === tourist" *ngIf="buttonLoading && currentTourist === tourist" [icon]="faSpinner" [spin]="buttonLoading && currentTourist === tourist"></fa-icon>Add
+          </button>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-pagination [pageSize]="50" [items]="touristsToAdd" (changePage)="onChangePageToAdd($event)"></app-pagination>
+</div>
+
+<ng-template #showMessage>
+  <h2>Tourist not found</h2>
+</ng-template>
+  <ng-template #flightNUll>
+    <h2>Jeszcze nie ma żadnych lotów żeby ich kupić</h2>
+  </ng-template>
+</section>

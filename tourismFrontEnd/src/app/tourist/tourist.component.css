@@ -1,0 +1,101 @@
+.grid{
+  margin-top: 2em;
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2em;
+  text-align: center;
+}
+.tourist__card{
+  border: 1px solid rgba(0,0,0, .4);
+  -webkit-box-align: center;
+  align-items: center;
+  max-height: 50em;
+  display: grid;
+  border-radius: 4px;
+}
+.card__img{
+  max-width: 10em;
+  border-radius: 50%;
+  margin-bottom: 2em;
+}
+.card__buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  margin: 1.2em;
+}
+.card__edit{
+  margin-right: 1em;
+  background: #3260a8;
+  padding: .6em;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-family: Poppins, 'sans-serif';
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.card__title a{
+  color:#1acf59;
+}
+.card__title{
+  margin-bottom: 1em;
+}
+.card__country{
+  margin-bottom: 1em;
+}
+
+
+.button_delete{
+  background: #ab2020;
+  padding: .8em;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-family: Poppins, 'sans-serif';
+  font-weight: 400;
+  cursor: pointer;
+  transition: .5s all;
+  outline: none;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0, .5);
+}
+.button_delete:hover{
+  background: #d11717;
+  box-shadow: -1px -1px 1px 1px rgba(0,0,0, .5);
+}
+
+.input__search{
+  margin-top: 2em;
+  background: #ffffff;
+  border: 2px solid rgba(0,0,0, .3);
+  outline: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-family: Poppins, 'sans-serif';
+  padding: 1em;
+}
+.card__search{
+  display: flex;
+  justify-content: flex-end;
+}
+.tourist__not__found{
+  text-align: center;
+  padding: 2em;
+  font-family: Poppins, 'sans-serif';
+}
+@media screen and (max-width: 960px){
+  .grid{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+}
+
+@media screen and (max-width: 815px){
+  .grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}

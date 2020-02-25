@@ -1,0 +1,10 @@
+.form__title_background{
+  background: #578ee0;
+}
+.form__input__shadows{
+  box-shadow: 1px 1px 1px 1px #578ee0;
+}
+.form__input__shadows:focus{
+  box-shadow: -2px -2px 1px #1acf59;
+
+}

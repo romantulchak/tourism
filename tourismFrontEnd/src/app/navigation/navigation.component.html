@@ -1,8 +1,9 @@
 <nav class="navbar__nav">
-  <div class="logo">Logo</div>
   <ul class="navbar__ul">
-    <li><a routerLink="/allTourists">All tourists</a></li>
-    <li><a routerLink="/createTourist">Create Tourist</a></li>
-    <li><a routerLink="/createFlight">Create Flight</a></li>
+    <li routerLinkActive="active__link" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Home</a></li>
+    <li routerLinkActive="active__link"  ><a routerLink="/allTourists">All tourists</a></li>
+    <li routerLinkActive="active__link"><a routerLink="/allFlights">All Flights</a></li>
+    <li routerLinkActive="active__link"><a routerLink="/createTourist">Create Tourist</a></li>
+    <li routerLinkActive="active__link"><a routerLink="/createFlight" >Create Flight</a></li>
   </ul>
 </nav>

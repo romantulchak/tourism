@@ -1,0 +1,39 @@
+.pagination{
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+.page-item{
+  display: flex;
+  border-radius: 4px;
+  margin: 2em .5em 2em .5em;
+}
+
+
+.page-link{
+  transition: .4s all;
+  padding: .7em;
+  border: 1px solid rgba(0, 1, 0, .3);
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: sans-serif;
+}
+
+
+.active{
+  background: #3433ac;
+  color: white;
+  transition: .5s all;
+  border: none;
+}
+
+@media screen and (max-width: 815px){
+  .page-item{
+    margin: 1em 0;
+  }
+}
+
+@media screen and (max-width: 650px){
+
+}

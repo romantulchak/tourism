@@ -1,0 +1,26 @@
+<div class="add_flight_card">
+  <div>
+    <h2 class="flight__card__title">{{flight.location}} <fa-icon [icon]="faRightArrow"></fa-icon> {{flight.direction}}</h2>
+    <hr class="flight__hr">
+    <div class="flight__values">
+      <fa-icon [icon]="faDeparture"></fa-icon><h3>Departure time: {{flight.arrivalTime}}</h3>
+    </div>
+    <div class="flight__values">
+      <fa-icon [icon]="faArrival"></fa-icon><h3>Arrival time: {{flight.timeOfDeparture}}</h3>
+    </div>
+    <div class="flight__values" *ngIf="flight.numberOfSeats != 0;else seatsIsFull">
+      <fa-icon [icon]="faPeople"></fa-icon>
+      <h3>Places: {{flight.numberOfSeats}}</h3>
+    </div>
+    <div class="flight__values">
+      <fa-icon [icon]="faMoney"></fa-icon>
+      <h4>Price: {{flight.ticketPrice}} <fa-icon [icon]="faDollar"></fa-icon> </h4>
+    </div>
+  </div>
+</div>
+<ng-template #seatsIsFull>
+  <div class="flight__values">
+    <fa-icon [icon]="faPeople"></fa-icon>
+    <h3 class="error__text">All places are occupied</h3>
+  </div>
+</ng-template>

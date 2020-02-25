@@ -1117,147 +1117,99 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="281" parent="8" name="flight"/>
-    <table id="282" parent="8" name="flight_tourists"/>
-    <table id="283" parent="8" name="hibernate_sequence"/>
-    <table id="284" parent="8" name="tourist"/>
-    <table id="285" parent="8" name="tourist_flight"/>
-    <column id="286" parent="281" name="id">
+    <table id="281" parent="8" name="flights_tourists"/>
+    <table id="282" parent="8" name="hibernate_sequence"/>
+    <table id="283" parent="8" name="tourist"/>
+    <table id="284" parent="8" name="tourist_flight"/>
+    <column id="285" parent="281" name="flight_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="281" name="arrival_time">
-      <Position>2</Position>
-      <DataType>date|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="288" parent="281" name="number_of_seats">
-      <Position>3</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="289" parent="281" name="ticket_price">
-      <Position>4</Position>
-      <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="290" parent="281" name="time_of_departure">
-      <Position>5</Position>
-      <DataType>date|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="291" parent="281" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="292" parent="282" name="flight_id">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="293" parent="282" name="tourists_id">
+    <column id="286" parent="281" name="tourists_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="294" parent="282" name="FKf8jittrmskok76qo79igooasm">
+    <index id="287" parent="281" name="FKoudhse8tow5579r9ny7cjrcjr">
       <ColNames>tourists_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="295" parent="282" name="PRIMARY">
+    <key id="288" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>flight_id
 tourists_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="296" parent="282" name="FKdo4m8ef5gmld0wwmfa0a56k2g">
-      <ColNames>flight_id</ColNames>
-      <RefTableName>flight</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="297" parent="282" name="FKf8jittrmskok76qo79igooasm">
+    <foreign-key id="289" parent="281" name="FKoudhse8tow5579r9ny7cjrcjr">
       <ColNames>tourists_id</ColNames>
       <RefTableName>tourist</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="298" parent="283" name="next_val">
+    <column id="290" parent="282" name="next_val">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="284" name="id">
+    <column id="291" parent="283" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="284" name="country">
+    <column id="292" parent="283" name="country">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="284" name="first_name">
+    <column id="293" parent="283" name="first_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="284" name="last_name">
+    <column id="294" parent="283" name="last_name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="284" name="notes">
+    <column id="295" parent="283" name="notes">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="284" name="sex">
+    <column id="296" parent="283" name="sex">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="305" parent="284" name="PRIMARY">
+    <key id="297" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="306" parent="285" name="tourist_id">
+    <column id="298" parent="284" name="tourist_id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="285" name="flight_id">
+    <column id="299" parent="284" name="flight_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="308" parent="285" name="FKcom18jq6ku1mwbfpd6s111vea">
-      <ColNames>flight_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="309" parent="285" name="PRIMARY">
+    <key id="300" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>tourist_id
 flight_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="310" parent="285" name="FKib4loew4clvejvxr3xhiq83up">
+    <foreign-key id="301" parent="284" name="FKib4loew4clvejvxr3xhiq83up">
       <ColNames>tourist_id</ColNames>
       <RefTableName>tourist</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="311" parent="285" name="FKcom18jq6ku1mwbfpd6s111vea">
-      <ColNames>flight_id</ColNames>
-      <RefTableName>flight</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
   </database-model>

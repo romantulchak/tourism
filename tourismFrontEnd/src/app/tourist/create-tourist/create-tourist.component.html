@@ -1,0 +1,76 @@
+<div class="loading" *ngIf="loading;"><mat-spinner></mat-spinner></div>
+<section class="container">
+  <div class="form__main">
+    <div class="form__center">
+      <div class="form__card">
+        <h2 class="form__title">Create tourist</h2>
+        <form (submit)="f.form.valid && createTourist()" #f="ngForm" method="post" action="" name="form" class="createTourist__form">
+          <div class="form__grid">
+            <div class="main">
+              <div class="row"><label for="firstName">First Name</label>
+                <input class="form__input" type="text" id="firstName" name="firstName" placeholder="First Name"
+                       [(ngModel)]="model.firstName"
+                       #firstName = "ngModel"
+                       [ngClass]="{'error': f.submitted && firstName.invalid}"
+                       required
+                       minlength="3"
+                       maxlength="12"
+                >
+                <div *ngIf="f.submitted && firstName.invalid">
+                  <div class="error__text" *ngIf="firstName.errors?.required">Name isn't correct</div>
+                  <div class="error__text" *ngIf="firstName.errors?.minlength">Can not be less than 3 symbols</div>
+                  <div class="error__text" *ngIf="firstName.errors?.maxlength">Can not be higher than 12 symbols</div>
+                </div>
+              </div>
+              <div class="row">
+                <label for="secondName">Last Name</label>
+                <input class="form__input" type="text" id="secondName" name="secondName" placeholder="Last Name"
+                       [(ngModel)]="model.lastName"
+
+                       #lastName = "ngModel"
+                       [ngClass]="{'error': f.submitted && lastName.invalid}"
+                       required
+                       minlength="3"
+                       maxlength="14"
+                >
+                <div *ngIf="f.submitted && lastName.invalid">
+                  <div class="error__text" *ngIf="lastName.errors?.required">Last Name isn't correct</div>
+                  <div class="error__text" *ngIf="lastName.errors?.minlength">Can not be less than 3 symbols</div>
+                </div>
+              </div>
+              <div class="row">
+                <label for="birthday">Birthday</label>
+                <input class="form__input"  tabindex="-1"  #birthday = "ngModel" [(ngModel)]="model.birthday" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" name="birthday" id="birthday" required placeholder="Birthday">
+                <owl-date-time [pickerType]="'calendar'"  hideOtherMonths="true" #dt4></owl-date-time>
+                <div *ngIf="f.submitted && birthday.invalid">
+                  <div class="error__text" *ngIf="birthday.errors?.required">Pls choose a correct date</div>
+                </div>
+              </div>
+              <div class="row">
+                <label for="sex">Sex</label>
+                <select class="form__input" name="sex" id="sex"  [(ngModel)]="model.sex">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="row">
+                <label for="notes">Notes</label>
+                <input class="form__input" type="text" id="notes" name="notes" placeholder="Notatki może być pustym" [(ngModel)]="model.notes"
+                >
+              </div>
+              <div class="row">
+                <label for="countries">Country</label>
+                <select  class="form__input" [(ngModel)]="model.country"  name="countries" id="countries">
+                  <option *ngFor="let country of countries" selected value="{{country.name}}">{{country.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form__submit">
+              <button type="submit">Create</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

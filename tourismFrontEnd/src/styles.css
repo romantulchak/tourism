@@ -1,3 +1,12 @@
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+@font-face {
+  src: url("assets/fonts/poppins.ttf");
+  font-family: Poppins;
+}
+
+
+
 *{
   margin: 0;
   padding: 0;
@@ -8,4 +17,182 @@
 }
 .error__text{
   color: red;
+}
+.container{
+  max-width: 1300px;
+  margin: 0 auto;
+}
+body {
+  margin: 0; font-family: Roboto,
+"Helvetica Neue", sans-serif;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.loading{
+  z-index: 9999;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  background: #fff;
+  top: 0;
+}
+
+.loading mat-spinner{
+  margin: 0 auto;
+  top: 50%;
+}
+
+
+.form__center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.form__card{
+  border: 1px solid rgba(0,0,0, .3);
+  padding: 2em;
+  height: 30em;
+  align-items: center;
+  border-radius: 8px;
+}
+.form__card h2{
+  text-align: center;
+  margin-bottom: 1em;
+}
+/*
+.d{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+ */
+.row{
+  justify-content: center;
+  display: grid;
+}
+.form__grid{
+  display: grid;
+}
+.main{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2em;
+}
+.row label{
+
+  font-family: Poppins, sans-serif;
+  margin-bottom: .3em;
+  color: #555;
+  font-weight: 600;
+  font-size: 13px;
+}
+.form__input{
+  width: 12em;
+  height: 2.5em;
+  text-align: center;
+  outline: none;
+  margin: 0 auto;
+  background: #fafafa;
+  transition: .4s all;
+  border: 1px solid rgba(0,0,0, .3);
+  font-size:16px;
+  box-shadow: 1px 1px 1px 1px #1acf59;
+  border-radius: 4px;
+}
+.ad{
+  box-shadow: 3px 3px 3px 3px red;
+  transition: .7s all;
+
+}
+.form__main{
+  height: 90vh;
+  display: block;
+}
+.form__submit{
+  text-align: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+.form__submit button{
+  padding: .3em;
+  width: 10em;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(104, 212, 80, .7);
+  color: #fff;
+  font-weight: 700;
+  font-family: Poppins, sans-serif;
+  letter-spacing: 1px;
+  font-size: 22px;
+  transition: .7s all;
+  cursor: pointer;
+  text-shadow: 1px 1px 11px rgb(0,0,0);
+}
+.form__title{
+  font-family: Poppins, 'sans-serif';
+  margin-bottom: 1em;
+  font-weight: 600;
+  color: white;
+  font-size: 46px;
+  text-align: center;
+  background: #ff7600;
+  border-radius: 8px;
+  text-shadow: 0 3px 0 #000;
+}
+.form__submit button:hover{
+  background: green;
+  border: 1px solid green;
+}
+.icon_notShow{
+  display: none;
+}
+
+.spiner__color{
+  color: white;
+}
+/*
+.button_delete{
+  background: #ab2020;
+  padding: .8em;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-family: Poppins, 'sans-serif';
+  font-weight: 400;
+  cursor: pointer;
+  transition: .5s all;
+  outline: none;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0, .5);
+}
+.button_delete:hover{
+  background: #d11717;
+  box-shadow: -1px -1px 1px 1px rgba(0,0,0, .5);
+}
+*/
+#icon__chair{
+  margin-right: 1em;
+}
+.flight__values{
+  display: flex;
+  font-family: Poppins, 'sans-serif';
+  justify-content: flex-start;
+  align-items: center;
+}
+.button_add{
+  position: fixed;
+  top: 90%;
+  left: 93%;
+  border: none;
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+  outline: none;
+  font-size: 20px;
+  background: rgba(0, 181, 0, 0.8);
+  font-weight: 600;
 }

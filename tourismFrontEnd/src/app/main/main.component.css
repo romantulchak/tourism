@@ -1,0 +1,144 @@
+.background__main{
+  background-image: url("../../assets/35-355841_flat-simple-animation-earth.gif");
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  justify-content: flex-start;
+  align-items: center;
+}
+.search__result{
+  height: 100%;
+}
+.search__form{
+  padding: 1em;
+  border: 2px solid rgba(0,0,0, .5);
+  background: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  border-radius: 8px;
+  margin-left: 3em;
+}
+.grid__add_flight{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 5em;
+  grid-gap: 1em;
+  font-family: Poppins, 'sans-serif';
+  margin-bottom: 2em;
+}
+.add_flight_card{
+  border: 1px dashed;
+  border-radius: 8px;
+  padding: 2em;
+}
+.flight__hr{
+  border: 2px solid rgba(0,0,0, .5);
+  border-radius: 8px;
+  margin-top: .4em;
+  margin-bottom: .4em;
+}
+.flight__card__title{
+  text-align: center;
+  background: rgba(34, 107, 197, 0.74);
+  padding: .5em;
+  border-radius: 5px;
+  color: #fff;
+  text-shadow: 1px 1px black;
+}
+
+.flight__values fa-icon{
+  margin-right: .7em;
+}
+
+.choose__flight:disabled{
+  background: #555555;
+}
+.choose__flight fa-icon{
+  margin-right: .4em;
+}
+.choose__block{
+  text-align: center;
+  margin-top: .7em;
+}
+::ng-deep .mat-dialog-container {
+  /* add your styles */
+  width:75em;
+  height: 20em;
+  background: white;
+  color: black;
+  display: grid;
+  align-items: center;
+}
+.success{
+  color: #fff;
+  background: #22b262;
+}
+.button_delete{
+  background: #ab2020;
+  padding: .8em;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-family: Poppins, 'sans-serif';
+  font-weight: 400;
+  cursor: pointer;
+  transition: .5s all;
+  outline: none;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0, .5);
+}
+.button_delete:hover{
+  background: #d11717;
+  box-shadow: -1px -1px 1px 1px rgba(0,0,0, .5);
+}
+
+.card__buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  margin: 1.2em;
+}
+.card__edit{
+  margin-right: 1em;
+  background: #3260a8;
+  padding: .6em;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-family: Poppins, 'sans-serif';
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+}
+.grid__input{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+.text__decoratin{
+  font-family: Poppins, 'sans-serif';
+  margin-left: .5em;
+}
+.block__button_search{
+  padding: .5em;
+  text-align: center;
+  margin-top: 1em;
+}
+.button_search{
+  padding: .9em;
+  border: none;
+  background: #0058ff;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  font-family: Poppins, 'sans-serif';
+  outline: none;
+  text-shadow: 1px 1px rgba(0,0,0, .5);
+}
+.flights_not_found{
+  text-align: center;
+  padding: 2em;
+  font-family: Poppins, 'sans-serif';
+}

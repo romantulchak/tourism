@@ -1,0 +1,18 @@
+.not__found{
+  width: 100%;
+  height: 80vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+.not__found__title{
+  font-size: 54px;
+  font-family: Poppins, 'sans-serif';
+}
+.not__found__link{
+  color: #0058ff;
+  font-family: Poppins, 'sans-serif';
+  margin-top: 1em;
+  font-size: 24px;
+}

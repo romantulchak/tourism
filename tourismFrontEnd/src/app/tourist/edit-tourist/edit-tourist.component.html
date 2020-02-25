@@ -1,0 +1,104 @@
+<div class="loading" *ngIf="loading;"><mat-spinner></mat-spinner></div>
+<section class="container">
+  <div class="edit_tourist__grid">
+    <div class="profile">
+       <div>
+         <img class="profile__avatar" *ngIf="tourist?.sex.includes('Male')" src="../../../assets/image/man.png" alt="">
+         <img  class="profile__avatar" *ngIf="tourist?.sex.includes('Female')" src="../../../assets/image/woman.png" alt="">
+         <h2 class="profile__name"><fa-icon [icon]="faUser"></fa-icon>{{tourist?.firstName | titlecase}} {{tourist?.lastName | titlecase}}</h2>
+         <div class="profile__country">
+           <div style="display: flex; align-items: flex-end;">
+             <img class="country__image" src="{{flag}}" alt="">
+             <h3>{{tourist?.country}}</h3>
+           </div>
+         </div>
+
+           <div class="profile__birthday__gender">
+                <fa-icon [icon]="faBirthday"></fa-icon>
+               <h3>{{tourist?.birthday}} </h3>
+           </div>
+         <div class="profile__birthday__gender">
+           <fa-icon [icon]="faGender"></fa-icon><h3>{{tourist?.sex}}</h3>
+         </div>
+
+         <div *ngIf="tourist?.notes.length != 0" class="profile__notes">
+           <h2>Notes: </h2>
+           <h3>{{tourist?.notes}}</h3>
+         </div>
+       </div>
+    </div>
+
+    <div class="flgiths__grid">
+      <div *ngIf="tourist?.flights.length == 0; else notNull">
+        <h2 class="flight__title">Flight not found</h2>
+      </div>
+      <ng-template #flightNUll>
+        <h2 class="flights__null">You can not buy any flights</h2>
+      </ng-template>
+      <ng-template #notNull>
+        <h2 class="flight__title success">My flights</h2>
+        <div class="flights__grid">
+          <div #f *ngFor="let f of pageOfItems">
+            <div class="flight__card">
+              <div class="delete_block">
+
+                <button class="button_delete"  [disabled]="buttonLoading" (click)="deleteFlight(tourist.id, f.id, f)" >
+                  <fa-icon [class.icon_notShow]="buttonLoading && currentFlight === f" [icon]="faTrash"></fa-icon>
+                  <fa-icon [class.spiner__color]="buttonLoading && currentFlight === f" *ngIf="buttonLoading && currentFlight === f" [icon]="faSpinner" [spin]="buttonLoading && currentFlight === f"></fa-icon>
+                </button>
+              </div>
+                <div class="flight_card__text" (click)="showDialog(f)">
+                <h2>{{f.location | titlecase }} - {{f.direction | titlecase}}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <app-pagination  [pageSize]="10" [items]="tourist?.flights" (changePage)="ngOnChangePage($event)"></app-pagination>
+      <button class="button_add" *ngIf="flights?.length != 0 && tourist != null; else flightNUll" (click)="addFlight()"><span *ngIf="!addFLight">+</span><span *ngIf="addFLight">-</span></button>
+    </div>
+  </div>
+
+  <div>
+    <ng-form #myForm= "ngForm" *ngIf="addFLight">
+      <div class="grid__add_flight">
+      <div class="add_flight_card" *ngFor="let flight of pageOfItems1">
+        <div class="card__position">
+          <h2 class="flight__card__title">{{flight.location}} <fa-icon [icon]="faRightArrow"></fa-icon> {{flight.direction}}</h2>
+          <hr class="flight__hr">
+          <div class="flight__values">
+            <fa-icon [icon]="faDeparture"></fa-icon><h3>Departure time: {{flight.arrivalTime}}</h3>
+          </div>
+          <div class="flight__values">
+            <fa-icon [icon]="faArrival"></fa-icon><h3>Arrival time: {{flight.timeOfDeparture}}</h3>
+          </div>
+          <div class="flight__values" *ngIf="flight.numberOfSeats != 0;else seatsIsFull">
+            <fa-icon id="icon__chair" [icon]="faChair"></fa-icon>
+            <h3>Places: {{flight.numberOfSeats}}</h3>
+          </div>
+          <div class="flight__values">
+            <fa-icon [icon]="faMoney"></fa-icon>
+            <h4>Price: {{flight.ticketPrice}} <fa-icon [icon]="faDollar"></fa-icon> </h4>
+          </div>
+          <div class="choose__block">
+            <button class="choose__flight" [disabled]="flight.numberOfSeats === 0 || buttonLoading && currentFlight === flight" (click)="chooseFlight(flight, tourist.id, 1)">
+              <fa-icon [class.icon_notShow]="buttonLoading && currentFlight === flight" [icon]="faShop"></fa-icon>
+              <fa-icon [class.spiner__color]="buttonLoading && currentFlight === flight" *ngIf="buttonLoading && currentFlight === flight" [icon]="faSpinner" [spin]="buttonLoading && currentFlight === flight"></fa-icon>Buy
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+      <app-pagination [pageSize]="10" [items]="flights" (changePage)="onChangePageToAdd($event)"></app-pagination>
+    </ng-form>
+
+  </div>
+  <ng-template #seatsIsFull>
+    <div class="flight__values">
+      <fa-icon [icon]="faPeople"></fa-icon>
+      <h3 class="error__text">All places are occupied</h3>
+    </div>
+  </ng-template>
+</section>
+
+

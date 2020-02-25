@@ -1,0 +1,91 @@
+<div class="loading" *ngIf="loading"><mat-spinner></mat-spinner></div>
+<section class="container">
+  <div class="form__main">
+    <div class="form__center">
+      <div class="form__card">
+        <h2 class="form__title form__title_background">Create flight</h2>
+        <form (submit)="f.form.valid && createFlight()" #f="ngForm" method="post" action="" name="form" class="createFlight__form">
+          <div class="form__grid">
+            <div class="main">
+           <div class="row"><label for="location">Location</label>
+              <input class="form__input form__input__shadows" type="text" id="location" name="location" placeholder="Location"
+                     [(ngModel)]="model.location"
+                     #location = "ngModel"
+                     [ngClass]="{'error': f.submitted && location.invalid}"
+                     required
+                     minlength="3"
+                     maxlength="14"
+              >
+                <div *ngIf="f.submitted && location.invalid">
+                  <div class="error__text" *ngIf="location.errors?.required">Name isn't correct</div>
+                  <div class="error__text" *ngIf="location.errors?.minlength">Can not be less than 3 symbols</div>
+                  <div class="error__text" *ngIf="location.errors?.maxlength">Can not be higher than 12 symbols</div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <label for="direction">Direction</label>
+                <input class="form__input form__input__shadows" type="text" id="direction" name="direction" placeholder="Direction"
+                       [(ngModel)]="model.direction"
+
+                       #direction = "ngModel"
+                       [ngClass]="{'error': f.submitted && direction.invalid}"
+                       required
+                       minlength="3"
+                       maxlength="14"
+                >
+                <div *ngIf="f.submitted && direction.invalid">
+                  <div class="error__text" *ngIf="direction.errors?.required">Direction isn't correct</div>
+                  <div class="error__text" *ngIf="direction.errors?.minlength">Can not be less than 3 symbols</div>
+                  <div class="error__text" *ngIf="direction.errors?.maxlength">Can not be higher than 14 symbols</div>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <label for="timeOfDeparture">Departure time</label>
+                <input class="form__input form__input__shadows" [min]="min" tabindex="-1" [(ngModel)]="model.timeOfDeparture" #timeOfDeparture = "ngModel" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" name="timeOfDeparture" id="timeOfDeparture" [ngClass]="{'error': f.submitted && timeOfDeparture.invalid}" required placeholder="Departure time">
+                <owl-date-time  hideOtherMonths="true" #dt4></owl-date-time>
+                <div *ngIf="f.submitted && timeOfDeparture.invalid">
+                  <div class="error__text" *ngIf="timeOfDeparture.errors?.required">Pls choose a correct date</div>
+                </div>
+              </div>
+              <div class="row">
+                <label for="arrivalTime">Arrival time</label>
+                <input class="form__input form__input__shadows" [min]="min" tabindex="-1" [owlDateTimeTrigger]="dt5" #arrivalTime="ngModel"  [ngClass]="{'error': f.submitted && arrivalTime.invalid}" name="arrivalTime" [owlDateTime]="dt5" [(ngModel)]="model.arrivalTime" id="arrivalTime" placeholder="Arrival time">
+                <owl-date-time  hideOtherMonths="true" #dt5></owl-date-time>
+                <div *ngIf="f.submitted && arrivalTime.invalid">
+                  <div class="error__text" *ngIf="arrivalTime.errors?.required">Pls choose a correct date</div>
+                </div>
+              </div>
+              <div class="row">
+                <label for="numberOfSeats">Number of seats</label>
+                <input class="form__input form__input__shadows" type="number" [ngClass]="{'error': f.submitted && numberOfSeats.invalid}" #numberOfSeats="ngModel" id="numberOfSeats" name="numberOfSeats" placeholder="Number of seats" [(ngModel)]="model.numberOfSeats"
+                       required>
+                <div *ngIf="f.submitted && numberOfSeats.invalid">
+                  <div class="error__text" *ngIf="numberOfSeats.errors?.required">Number of Seats is required</div>
+                </div>
+              </div>
+              <div class="row">
+                <label for="ticketPrice">Ticket price</label>
+                <input class="form__input form__input__shadows" type="number" [ngClass]="{'error': f.submitted && ticketPrice.invalid}" #ticketPrice="ngModel" id="ticketPrice" name="ticketPrice" placeholder="Ticket price" [(ngModel)]="model.ticketPrice"  required >
+                <div *ngIf="f.submitted && ticketPrice.invalid">
+                  <div class="error__text" *ngIf="ticketPrice.errors?.required">Ticket price is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form__submit">
+              <button type="submit">Create</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+

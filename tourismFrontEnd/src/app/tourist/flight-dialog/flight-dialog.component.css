@@ -1,0 +1,7 @@
+::ng-deep .mat-dialog-container {
+  /* add your styles */
+  width:75em;
+  height: 20em;
+  background: white !important;
+  color: black !important;
+}

@@ -13,5 +13,20 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/tourism</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="tourismDB@localhost" uuid="f8ec4bfa-bc9a-42b0-8951-46c51d975509">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/tourismDB</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="MySQL - tourists@localhost" uuid="d8dd2ffc-468b-458d-aad9-60b32fde8dc2">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/tourists</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>

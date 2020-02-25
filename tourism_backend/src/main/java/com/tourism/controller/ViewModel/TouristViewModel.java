@@ -1,42 +1,29 @@
 package com.tourism.controller.ViewModel;
 
 import com.sun.istack.NotNull;
+import com.tourism.model.Flight;
+import com.tourism.model.Tourist;
+
+import java.util.Set;
 
 public class TouristViewModel {
 
-    @NotNull
-    private String firstName;
+    private Flight flight;
+    private Tourist tourist;
 
-    @NotNull
-    private String lastName;
-
-    @NotNull
-    private String sex;
-
-    @NotNull
-    private String country;
-
-    @NotNull
-    private String notes;
-
-
-    public String getFirstName() {
-        return firstName;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
-    public String getSex() {
-        return sex;
+    public Tourist getTourist() {
+        return tourist;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public String getNotes() {
-        return notes;
+    public void setTourist(Tourist tourist) {
+        this.tourist = tourist;
     }
 }
